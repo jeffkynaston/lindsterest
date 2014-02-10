@@ -1,4 +1,4 @@
-<%= render 'pages/home' unless user_signed_in? %>
+<% if user_signed_in? %>
 
 <div id="pins" class="transitions-enabled">
   <% @pins.each do |pin| %>
@@ -27,3 +27,24 @@
 <div class="center">
    <%= will_paginate @posts, renderer: BootstrapPagination::Rails %>
 </div>
+
+<% else %>
+<div class="jumbotron center">
+  <h1>Welcome to Lindsterest!</h1>
+  <p>
+    <%= link_to "Log in", new_user_session_path, class: "btn btn-default btn-lg" %>
+    <%= link_to "Sign up", new_user_registration_path, class: "btn btn-primary btn-lg" %>
+  </p>
+</div>
+
+<div id="pins" class="transitions-enabled">
+  <% @pins.each do |pin| %>
+    <div class="box panel panel-default">
+      <%= link_to image_tag(pin.image.url(:medium)), pin %>
+      <div class="panel-body">
+        <%= pin.description %>     
+      </div>
+    </div>
+  <% end %>
+</div>
+<% end %>

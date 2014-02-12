@@ -1,5 +1,12 @@
 <% if user_signed_in? %>
 
+<div class="jumbotron center">
+  <h1><%= current_user.name %></h1>
+  <p>
+    
+  </p>
+</div>
+
 <div id="pins" class="transitions-enabled">
   <% @pins.each do |pin| %>
     <div class="box panel panel-default">
@@ -29,6 +36,7 @@
 </div>
 
 <% else %>
+
 <div class="jumbotron center">
   <h1>Welcome to Lindsterest!</h1>
   <p>
@@ -47,4 +55,5 @@
     </div>
   <% end %>
 </div>
+
 <% end %>
